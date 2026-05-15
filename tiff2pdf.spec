@@ -1,19 +1,17 @@
 # -*- mode: python ; coding: utf-8 -*-
-"""PyInstaller one-file build: single Tiff2Pdf.exe (vendor embedded at runtime)."""
+"""PyInstaller one-file build: single dist/Tiff2Pdf.exe only."""
 
 from pathlib import Path
 
 block_cipher = None
 root = Path(SPECPATH)
 
-datas = [(str(root / "vendor"), "vendor")]
-
 a = Analysis(
     [str(root / "main.py")],
     pathex=[str(root)],
     binaries=[],
-    datas=datas,
-    hiddenimports=[],
+    datas=[(str(root / "vendor"), "vendor")],
+    hiddenimports=["customtkinter"],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -46,4 +44,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    onefile=True,
 )

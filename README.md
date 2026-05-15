@@ -44,7 +44,7 @@ build.bat
 
 ## Hazır Windows sürümü (GitHub Release)
 
-[Releases](https://github.com/Zaferturan/tiff2pdf/releases) sayfasından `Tiff2Pdf-Windows.zip` indirin; zip’ten çıkan **`Tiff2Pdf.exe`** yeterlidir.
+[Releases](https://github.com/Zaferturan/tiff2pdf/releases) sayfasından **en güncel** sürümü (`v1.2.1` veya üzeri) indirin. Zip içinde yalnızca **`Tiff2Pdf.exe`** olmalıdır (`_internal` klasörü yok). Eski `v1.1.0` zip’i klasörlü dağıtımdır.
 
 ## Test
 

@@ -10,6 +10,7 @@ from tkinter import filedialog, messagebox
 
 import customtkinter as ctk
 
+from tiff2pdf_gui import __version__
 from tiff2pdf_gui.conflict_bridge import ConflictBridge
 from tiff2pdf_gui.conflicts import ConflictChoice, PendingConflict
 from tiff2pdf_gui.dialogs import ConflictDialog
@@ -21,7 +22,7 @@ from tiff2pdf_gui.worker import JobConfig, run_conversion
 class Tiff2PdfApp(ctk.CTk):
     def __init__(self) -> None:
         super().__init__()
-        self.title("TIFF → PDF")
+        self.title(f"TIFF → PDF  v{__version__}")
         self.geometry("920x680")
         self.minsize(720, 560)
 

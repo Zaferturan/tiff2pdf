@@ -43,7 +43,7 @@ jobs:
         run: |
           python -m pip install -r requirements.txt
           Remove-Item -Recurse -Force build, dist -ErrorAction SilentlyContinue
-          pyinstaller --noconfirm --clean --onefile --windowed tiff2pdf.spec
+          pyinstaller --noconfirm --clean tiff2pdf.spec
 
       - name: Verify single exe (no _internal in dist)
         shell: pwsh

@@ -10,8 +10,11 @@ a = Analysis(
     [str(root / "main.py")],
     pathex=[str(root)],
     binaries=[],
-    datas=[(str(root / "vendor"), "vendor")],
-    hiddenimports=["customtkinter"],
+    datas=[
+        (str(root / "vendor"), "vendor"),
+        (str(root / "tiff2pdf_gui" / "assets"), "tiff2pdf_gui/assets"),
+    ],
+    hiddenimports=["customtkinter", "PIL", "PIL._tkinter_finder"],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

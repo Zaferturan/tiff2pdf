@@ -11,7 +11,9 @@ from tkinter import filedialog, messagebox
 import customtkinter as ctk
 
 from tiff2pdf_gui import __version__
+from tiff2pdf_gui.branding import header_logo
 from tiff2pdf_gui.conflict_bridge import ConflictBridge
+from tiff2pdf_gui.limits import MAX_TIFF_BYTES, format_bytes
 from tiff2pdf_gui.conflicts import ConflictChoice, PendingConflict
 from tiff2pdf_gui.dialogs import ConflictDialog
 from tiff2pdf_gui.paths import tiff2pdf_executable
@@ -46,8 +48,24 @@ class Tiff2PdfApp(ctk.CTk):
         self.after(80, self._poll_queue)
 
     def _build_ui(self) -> None:
-        title = ctk.CTkLabel(self, text="TIFF dosyalarını PDF’e dönüştür", font=ctk.CTkFont(size=18, weight="bold"))
-        title.pack(anchor="w", padx=16, pady=(16, 8))
+        header = ctk.CTkFrame(self, fg_color="transparent")
+        header.pack(fill="x", padx=16, pady=(12, 4))
+        ctk.CTkLabel(header, text="", image=header_logo()).pack(side="left", padx=(0, 12))
+        text_col = ctk.CTkFrame(header, fg_color="transparent")
+        text_col.pack(side="left", fill="x", expand=True)
+        ctk.CTkLabel(
+            text_col,
+            text="TIFF dosyalarını PDF’e dönüştür",
+            font=ctk.CTkFont(size=18, weight="bold"),
+            anchor="w",
+        ).pack(anchor="w")
+        ctk.CTkLabel(
+            text_col,
+            text="Nilüfer Belediyesi Bilgi İşlem Müdürlüğü",
+            font=ctk.CTkFont(size=12),
+            text_color="gray60",
+            anchor="w",
+        ).pack(anchor="w")
 
         # Input row
         f_in = ctk.CTkFrame(self, fg_color="transparent")
@@ -69,6 +87,12 @@ class Tiff2PdfApp(ctk.CTk):
 
         self._count_label = ctk.CTkLabel(self, text="TIFF sayısı: —", anchor="w")
         self._count_label.pack(fill="x", padx=16, pady=(8, 4))
+        ctk.CTkLabel(
+            self,
+            text=f"Tek dosya üst sınırı: {format_bytes(MAX_TIFF_BYTES)}",
+            anchor="w",
+            text_color="gray60",
+        ).pack(fill="x", padx=16, pady=(0, 4))
 
         ctk.CTkLabel(
             self,
@@ -329,6 +353,11 @@ class Tiff2PdfApp(ctk.CTk):
         self._conflict_dialog = ConflictDialog(self, pending.relative, on_result=on_result)
 
 
+def create_app() -> Tiff2PdfApp:
+    return Tiff2PdfApp()
+
+
 def run_app() -> None:
-    app = Tiff2PdfApp()
-    app.mainloop()
+    from tiff2pdf_gui.splash import show_splash_then
+
+    show_splash_then(create_app)

@@ -1,4 +1,4 @@
-"""Resolve bundled `tiff2pdf` and vendor directory (dev vs PyInstaller)."""
+"""Resolve bundled `tiff2pdf`, vendor, and asset paths (dev vs PyInstaller)."""
 
 from __future__ import annotations
 
@@ -12,10 +12,28 @@ def project_root() -> Path:
     return Path(__file__).resolve().parent.parent
 
 
-def vendor_dir() -> Path:
+def _bundle_root() -> Path:
     if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
-        return Path(sys._MEIPASS) / "vendor"
-    return project_root() / "vendor"
+        return Path(sys._MEIPASS)
+    return project_root()
+
+
+def vendor_dir() -> Path:
+    return _bundle_root() / "vendor"
+
+
+def assets_dir() -> Path:
+    bundled = _bundle_root() / "tiff2pdf_gui" / "assets"
+    if bundled.is_dir():
+        return bundled
+    return Path(__file__).resolve().parent / "assets"
+
+
+def asset_path(name: str) -> Path:
+    path = assets_dir() / name
+    if not path.is_file():
+        raise FileNotFoundError(f"Varlık bulunamadı: {path}")
+    return path
 
 
 def tiff2pdf_executable() -> Path:

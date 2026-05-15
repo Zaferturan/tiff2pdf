@@ -38,10 +38,10 @@ def test_rotate_portrait_pages(tmp_path: Path) -> None:
     assert count == 2
 
     reader = PdfReader(str(pdf))
-    assert reader.pages[0].get("/Rotate") == 90
+    assert reader.pages[0].get("/Rotate") == 270
     assert reader.pages[1].get("/Rotate") is None
     assert reader.pages[2].get("/Rotate") is None
-    assert reader.pages[3].get("/Rotate") == 90
+    assert reader.pages[3].get("/Rotate") == 270
 
 
 def test_rotate_portrait_pages_noop_on_landscape_only(tmp_path: Path) -> None:

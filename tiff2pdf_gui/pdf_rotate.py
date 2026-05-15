@@ -6,7 +6,8 @@ from pathlib import Path
 
 from pypdf import PdfReader, PdfWriter
 
-PORTRAIT_ROTATE_DEGREES = 90
+# pypdf rotates clockwise; 270° = 90° counter-clockwise.
+PORTRAIT_ROTATE_DEGREES = 270
 
 
 def _page_dimensions(page) -> tuple[float, float]:

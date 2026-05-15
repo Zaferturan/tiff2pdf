@@ -237,10 +237,11 @@ def run_conversion(
 
                 converted += 1
                 if rotated_pages == 1:
-                    log_line(f"Dikey → yatay (PDF 90°): {rel}")
+                    log_line(f"Dikey → yatay (PDF, saat yönü tersi 90°): {rel}")
                 elif rotated_pages > 1:
                     log_line(
-                        f"Dikey → yatay (PDF 90°): {rel} — {rotated_pages} sayfa döndürüldü"
+                        f"Dikey → yatay (PDF, saat yönü tersi 90°): {rel} — "
+                        f"{rotated_pages} sayfa döndürüldü"
                     )
                 log_line(f"Tamam: {rel}")
                 event_queue.put(

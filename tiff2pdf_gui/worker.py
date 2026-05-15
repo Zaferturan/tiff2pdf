@@ -13,7 +13,12 @@ from pathlib import Path
 from typing import Callable
 
 from tiff2pdf_gui.conflicts import ConflictChoice
-from tiff2pdf_gui.limits import LARGE_FILE_BYTES, MAX_TIFF_BYTES, format_bytes
+from tiff2pdf_gui.limits import (
+    LARGE_FILE_BYTES,
+    MAX_TIFF_BYTES,
+    TIFF2PDF_MEMORY_LIMIT_BYTES,
+    format_bytes,
+)
 from tiff2pdf_gui.paths import tiff2pdf_executable
 from tiff2pdf_gui.scanner import output_pdf_path
 
@@ -48,7 +53,14 @@ def _run_tiff2pdf(
     try:
         with open(err_path, "wb") as err_out:
             proc = subprocess.Popen(
-                [str(exe), "-o", str(pdf_path), str(tif_path)],
+                [
+                    str(exe),
+                    "-m",
+                    str(TIFF2PDF_MEMORY_LIMIT_BYTES),
+                    "-o",
+                    str(pdf_path),
+                    str(tif_path),
+                ],
                 stdout=subprocess.DEVNULL,
                 stderr=err_out,
                 cwd=str(exe.parent),

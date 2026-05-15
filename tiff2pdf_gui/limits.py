@@ -5,6 +5,9 @@ from __future__ import annotations
 # Maximum single TIFF input size (2 GiB).
 MAX_TIFF_BYTES = 2 * 1024 * 1024 * 1024
 
+# tiff2pdf defaults to 256 MiB per allocation (-m); large scans need more.
+TIFF2PDF_MEMORY_LIMIT_BYTES = MAX_TIFF_BYTES
+
 # Log a note when conversion may take longer.
 LARGE_FILE_BYTES = 100 * 1024 * 1024
 

@@ -106,7 +106,7 @@ class Tiff2PdfApp(ctk.CTk):
 
         hint = ctk.CTkLabel(
             self,
-            text="Alt klasör yapısı çıktıda korunur. Windows dağıtımı için `vendor` içine tiff2pdf.exe ve DLL’leri ekleyin.",
+            text="Alt klasör yapısı çıktıda korunur.",
             anchor="w",
             text_color="gray60",
             wraplength=880,

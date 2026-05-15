@@ -38,11 +38,13 @@ Linux’ta geliştirme için sistemde `tiff2pdf` yeterlidir (`apt install libtif
 build.bat
 ```
 
-3. Dağıtım: **`dist/Tiff2Pdf` klasörünün tamamını** kopyalayın (yalnızca `.exe` değil).
+3. Dağıtım: yalnızca **`dist/Tiff2Pdf.exe`** (tek dosya; `_internal` klasörü yok).
+
+İlk açılışta PyInstaller geçici olarak içeriği açar; bu normaldir ve birkaç saniye sürebilir.
 
 ## Hazır Windows sürümü (GitHub Release)
 
-[Releases](https://github.com/Zaferturan/tiff2pdf/releases) sayfasından `Tiff2Pdf-Windows.zip` indirin; zip içindeki klasörün tamamını bir yere çıkarın ve `Tiff2Pdf.exe` çalıştırın.
+[Releases](https://github.com/Zaferturan/tiff2pdf/releases) sayfasından `Tiff2Pdf-Windows.zip` indirin; zip’ten çıkan **`Tiff2Pdf.exe`** yeterlidir.
 
 ## Test
 

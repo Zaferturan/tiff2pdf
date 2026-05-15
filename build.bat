@@ -1,5 +1,5 @@
 @echo off
-REM Build Windows one-folder release (run from project root on Windows).
+REM Build Windows single-exe release (run from project root on Windows).
 python -m pip install -r requirements.txt
 if not exist vendor\tiff2pdf.exe (
     echo ERROR: vendor\tiff2pdf.exe missing. See vendor\README.txt
@@ -7,5 +7,5 @@ if not exist vendor\tiff2pdf.exe (
 )
 pyinstaller --noconfirm tiff2pdf.spec
 echo.
-echo Output: dist\Tiff2Pdf\Tiff2Pdf.exe
-echo Copy the entire dist\Tiff2Pdf folder to target machines.
+echo Output: dist\Tiff2Pdf.exe
+echo Distribute only this file (no _internal folder needed).

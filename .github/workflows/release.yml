@@ -9,7 +9,7 @@ on:
       version:
         description: "Release tag (ör. v1.1.0)"
         required: true
-        default: "v1.1.0"
+        default: "v1.2.0"
 
 permissions:
   contents: write
@@ -46,7 +46,7 @@ jobs:
       - name: Create zip
         shell: pwsh
         run: |
-          Compress-Archive -Path dist\Tiff2Pdf\* -DestinationPath Tiff2Pdf-Windows.zip -Force
+          Compress-Archive -Path dist\Tiff2Pdf.exe -DestinationPath Tiff2Pdf-Windows.zip -Force
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2

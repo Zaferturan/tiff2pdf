@@ -14,7 +14,7 @@ a = Analysis(
         (str(root / "vendor"), "vendor"),
         (str(root / "tiff2pdf_gui" / "assets"), "tiff2pdf_gui/assets"),
     ],
-    hiddenimports=["customtkinter", "PIL", "PIL._tkinter_finder"],
+    hiddenimports=["customtkinter", "PIL", "PIL._tkinter_finder", "pypdf"],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

@@ -95,6 +95,7 @@ def test_tiff2pdf_invoked_with_memory_limit(tmp_path: Path) -> None:
     with (
         patch("tiff2pdf_gui.worker.tiff2pdf_executable", return_value=fake_exe),
         patch("tiff2pdf_gui.worker.subprocess.Popen", return_value=proc) as popen,
+        patch("tiff2pdf_gui.worker.rotate_portrait_pages", return_value=0),
     ):
         run_conversion(cfg, q, cancel, lambda _s: None)
 

@@ -19,6 +19,7 @@ from tiff2pdf_gui.limits import (
     TIFF2PDF_MEMORY_LIMIT_BYTES,
     format_bytes,
 )
+from tiff2pdf_gui.pdf_rotate import rotate_portrait_pages
 from tiff2pdf_gui.paths import tiff2pdf_executable
 from tiff2pdf_gui.scanner import output_pdf_path
 
@@ -218,7 +219,29 @@ def run_conversion(
                     }
                 )
             else:
+                try:
+                    rotated_pages = rotate_portrait_pages(pdf_path)
+                except OSError as e:
+                    errors.append((rel, str(e)))
+                    log_line(f"HATA PDF döndürme: {rel} — {e}")
+                    event_queue.put(
+                        {
+                            "type": "file_done",
+                            "index": idx,
+                            "total": total,
+                            "ok": False,
+                            "skipped": False,
+                        }
+                    )
+                    continue
+
                 converted += 1
+                if rotated_pages == 1:
+                    log_line(f"Dikey → yatay (PDF 90°): {rel}")
+                elif rotated_pages > 1:
+                    log_line(
+                        f"Dikey → yatay (PDF 90°): {rel} — {rotated_pages} sayfa döndürüldü"
+                    )
                 log_line(f"Tamam: {rel}")
                 event_queue.put(
                     {
